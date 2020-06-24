@@ -1,4 +1,4 @@
--- This was a simple project in which I analyzed weather patterns between my local area (Austin, TX) and the globe to check for any particular or interesting trends. It involved extracting and loading the necessary data using SQL and then analyzing the data in Excel or Google Sheets. */
+-- This was a simple project in which I analyzed weather patterns between my local area (Austin, TX) and the globe to check for any particular or interesting trends. It involved extracting and loading the necessary data using SQL and then analyzing the data in Excel or Google Sheets. 
 -- To start, I extracted my data using the following queries:
 
 SELECT g.year, 
