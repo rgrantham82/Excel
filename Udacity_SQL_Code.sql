@@ -22,5 +22,3 @@ LEFT JOIN city_data C
 ON        A.year = C.year 
 WHERE     B.city = 'Austin' 
 AND       C.city = 'San Francisco’;
-
-
