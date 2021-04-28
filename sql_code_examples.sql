@@ -1,3 +1,29 @@
+WITH table_1
+     AS (SELECT 'Alice'                    AS NAME,
+                'CEO'                      AS position,
+                Cast('1990-04-01' AS DATE) AS hire_date
+         UNION ALL
+         SELECT 'Bob',
+                'Sr. Developer',
+                '2010-01-27'
+         UNION ALL
+         SELECT 'Cameron',
+                'Admin. Assistant',
+                '2020-04-12'),
+     table_2
+     AS (SELECT 'CEO' AS position,
+                1     AS level
+         UNION ALL
+         SELECT 'Sr Developer',
+                2
+         UNION ALL
+         SELECT 'Admin Assistant',
+                3)
+SELECT *
+FROM   table_1; 
+
+
+
 SELECT   Left(Replace(Upper(Trim(c.country)), '.', ''), 3) AS country_code,
          pop_in_millions,
          SUM( Coalesce(bronze, 0) + Coalesce(silver, 0) + Coalesce(gold, 0) )                                     AS medals,
