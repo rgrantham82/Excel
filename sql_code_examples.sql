@@ -1,3 +1,6 @@
+---Note: The following queries are based off work-related queries and therefore have been altered to protect data integrity and confidentiality.---
+
+
 SELECT   Left(Replace(Upper(Trim(c.country)), '.', ''), 3) AS country_code,
          pop_in_millions,
          SUM( Coalesce(bronze, 0) + Coalesce(silver, 0) + Coalesce(gold, 0) )                                     AS medals,
