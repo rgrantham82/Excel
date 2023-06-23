@@ -13,19 +13,15 @@ WHERE    cs.pop_in_millions IS NOT NULL
 GROUP BY c.country,
          pop_in_millions
 ORDER BY medals_per_million DESC limit 25;
-
 SELECT country_id,
        year,
        gdp,
        Avg(gdp) OVER (partition BY country_id) AS country_avg_gdp
-FROM   country_stats;
-
-SELECT country_id,
+FROM   country_stats;SELECT country_id,
        year,
        gdp,
        Sum(gdp) OVER (partition BY country_id) AS country_sum_gdp
 FROM   country_stats;``
-
 SELECT   region,
          Avg(total_golds) AS avg_total_golds
 FROM     (
