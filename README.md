@@ -18,7 +18,7 @@ This project involves analyzing a dataset as part of a Udacity course.
 - `Copy of Udacity_Proj1.xlsx`: Supporting Excel file
 
 **Description:**
-In this project, I analyzed [dataset description], using various SQL queries to extract meaningful insights. The analysis includes [key points of the analysis].
+In this project, I analyzed historical weather data, using various SQL queries to extract meaningful insights.
 
 ## Project 2: Analyze International Debt Statistics
 
@@ -29,7 +29,7 @@ This project analyzes international debt statistics using SQL and Jupyter notebo
 - `datasets/international_debt.zip`: Dataset used in the project
 
 **Description:**
-In this project, I explored international debt statistics to understand [key points]. The analysis involves [methods and techniques used].
+In this project, I explored international debt statistics to understand global debt distribution, key debt indicators, and country-wise debt profiles. The analysis involves data cleaning, SQL queries for data extraction, and visualizing results using Python libraries.
 
 ## SQL Code Examples
 
