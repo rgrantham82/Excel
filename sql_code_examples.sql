@@ -77,7 +77,8 @@ FROM   (
                                                                                                                [Electric Bikes],
                                                                                                                [Mountain Bikes],
                                                                                                                [Road Bikes]) ) AS pivot_table;
--- Calculate the total revenue for each product categorySELECT     category_name,
+-- Calculate the total revenue for each product category
+SELECT     category_name,
            Sum(quantity * price) AS total_revenuefrom orders
 INNER JOIN products
 ON         orders.product_id = products.product_id
