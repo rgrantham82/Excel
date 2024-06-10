@@ -34,16 +34,15 @@ INSERT INTO #departments
 
 -- Insert values into employees tableINSERT INTO #employees( employee_id, employee_name, employee_dob, department_id ) VALUES ( 1, 'Alan Smith', '1989-01-01', 1 ) , ( 2, 'Sultan Nader', '1992-01-01', 1 ) , ( 3, 'Mohd Rasheed', '1999-01-01', 2 ) , ( 4, 'Brian Wallace', '1979-01-01', 3 ) , ( 5, 'Peter Hilton', '1986-01-01', NULL );
 
-SELECT     'Name' = p.firstname + ' ' +      p.lastname,
-           'Email' =                         e.emailaddress,
-           'City' = a.city
-FROM       person.person p
-INNER JOIN person.emailaddress e
-ON         p.businessentityid = e.businessentityid
-INNER JOIN person.businessentityaddress bea
-ON         bea.businessentityid = p.businessentityid
-INNER JOIN person.address a
-ON         a.addressid = bea.addressid;
+SELECT 
+  'Name' = p.firstname + ' ' + p.lastname, 
+  'Email' = e.emailaddress, 
+  'City' = a.city 
+FROM 
+  person.person p 
+  INNER JOIN person.emailaddress e ON p.businessentityid = e.businessentityid 
+  INNER JOIN person.businessentityaddress bea ON bea.businessentityid = p.businessentityid 
+  INNER JOIN person.address a ON a.addressid = bea.addressid;
 
 -- Pivot table with one row and five columns
 SELECT 'AverageCost' AS Cost_Sorted_By_Production_Days,
