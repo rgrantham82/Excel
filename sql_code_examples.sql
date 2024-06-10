@@ -36,7 +36,8 @@ INSERT INTO #departments
 
 SELECT     'Name' = p.firstname + ' ' +      p.lastname,
            'Email' =                         e.emailaddress,
-           'City' = a.cityfrom person.person p
+           'City' = a.city
+FROM       person.person p
 INNER JOIN person.emailaddress e
 ON         p.businessentityid = e.businessentityid
 INNER JOIN person.businessentityaddress bea
