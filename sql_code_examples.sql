@@ -99,63 +99,64 @@ FROM   (SELECT category_name,
                                    [Road Bikes]) ) AS pivot_table; 
 
 -- Calculate the total revenue for each product category
-SELECT     category_name,
-           Sum(quantity * price) AS total_revenue
-FROM       orders
-INNER JOIN products
-ON         orders.product_id = products.product_id
-INNER JOIN categories
-ON         products.category_id = categories.category_id
-GROUP BY   category_name;
+SELECT category_name,
+       Sum(quantity * price) AS total_revenue
+FROM   orders
+       INNER JOIN products
+               ON orders.product_id = products.product_id
+       INNER JOIN categories
+               ON products.category_id = categories.category_id
+GROUP  BY category_name;
 
 -- Calculate the average salary for each department
-SELECT     department_name,
-           Avg(salary) AS average_salary
-FROM       employees
-INNER JOIN departments
-ON         employees.department_id = departments.department_id
-GROUP BY   department_name;
+SELECT department_name,
+       Avg(salary) AS average_salary
+FROM   employees
+       INNER JOIN departments
+               ON employees.department_id = departments.department_id
+GROUP  BY department_name;
 
 -- Get the top 5 customers with the highest total purchase amount
 SELECT customer_id,
        Sum(quantity * price) AS total_purchase_amount
 FROM   orders
-GROUP BY customer_id
-ORDER BY total_purchase_amount DESC
-LIMIT 5;
+GROUP  BY customer_id
+ORDER  BY total_purchase_amount DESC
+LIMIT  5;
 
 -- Find the number of employees hired each year
 SELECT Extract(year FROM hire_date) AS hire_year,
        Count(*)                     AS num_employees_hired
 FROM   employees
-GROUP BY hire_year
-ORDER BY hire_year;
+GROUP  BY hire_year
+ORDER  BY hire_year;
 
 -- Calculate the average rating for each movie genre
-SELECT     genre,
-           Avg(rating) AS average_rating
-FROM       movies
-INNER JOIN movie_genre
-ON         movies.movie_id = movie_genre.movie_id
-INNER JOIN genres
-ON         movie_genre.genre_id = genres.genre_id
-GROUP BY   genre;
+SELECT genre,
+       Avg(rating) AS average_rating
+FROM   movies
+       INNER JOIN movie_genre
+               ON movies.movie_id = movie_genre.movie_id
+       INNER JOIN genres
+               ON movie_genre.genre_id = genres.genre_id
+GROUP  BY genre; 
 
 -- Retrieve the top 3 highest-selling products in each country
 SELECT country,
        product_name,
        total_quantity_sold
-FROM   (
-          SELECT     country,
-                     product_name,
-                     SUM(quantity)                                                        AS total_quantity_sold,
-                     ROW_NUMBER() OVER (PARTITION BY country ORDER BY SUM(quantity) DESC) AS rn
-          FROM       orders
-          INNER JOIN products
-          ON         orders.product_id = products.product_id
-          INNER JOIN customers
-          ON         orders.customer_id = customers.customer_id
-          GROUP BY   country,
-                     product_name 
-       ) AS subquery
-WHERE  rn <= 3;
+FROM   (SELECT country,
+               product_name,
+               SUM(quantity)                    AS total_quantity_sold,
+               Row_number()
+                 over (
+                   PARTITION BY country
+                   ORDER BY SUM(quantity) DESC) AS rn
+        FROM   orders
+               inner join products
+                       ON orders.product_id = products.product_id
+               inner join customers
+                       ON orders.customer_id = customers.customer_id
+        GROUP  BY country,
+                  product_name) AS subquery
+WHERE  rn <= 3; 
